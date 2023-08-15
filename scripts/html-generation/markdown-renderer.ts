@@ -108,8 +108,6 @@ export namespace MarkdownRenderer
 		{
 			postProcessHTML(file, container);
 
-			AssetHandler.loadMathjaxStyles();
-
 			return container.innerHTML;
 		}
 

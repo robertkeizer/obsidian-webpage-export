@@ -128,33 +128,6 @@ export class AssetHandler
 		this.lastMathjaxChanged = -1;
 	}
 
-	public static loadMathjaxStyles()
-	{
-		// @ts-ignore
-		if (this.mathjaxStylesheet == undefined) this.mathjaxStylesheet = Array.from(document.styleSheets).find((sheet) => sheet.ownerNode.id == ("MJX-CHTML-styles"));
-		if (this.mathjaxStylesheet == undefined) return;
-
-		// @ts-ignore
-		let changed = this.mathjaxStylesheet?.ownerNode.getAttribute("data-change");
-		if (changed != this.lastMathjaxChanged)
-		{
-			AssetHandler.mathStyles = "";
-			for (let i = 0; i < this.mathjaxStylesheet.cssRules.length; i++)
-			{
-				AssetHandler.mathStyles += this.mathjaxStylesheet.cssRules[i].cssText + "\n";
-			}
-
-			AssetHandler.mathStyles.replaceAll("app://obsidian.md/", "https://publish.obsidian.md/").trim();
-		}
-		else
-		{
-			console.log(Utils.getActiveTextView()?.file.name + " does not have latex");
-			AssetHandler.mathStyles = "";
-		}
-
-		this.lastMathjaxChanged = changed;
-	}
-
 	private static async loadAppStyles()
 	{
 		let appSheet = document.styleSheets[1];
@@ -180,8 +153,8 @@ export class AssetHandler
 				if (rule.cssText.startsWith(".cm-")) continue;
 				
 				let cssText = rule.cssText + "\n";
-				cssText = cssText.replaceAll("public/", "https://publish.obsidian.md/public/");
-				cssText = cssText.replaceAll("lib/", "https://publish.obsidian.md/lib/")
+				//cssText = cssText.replaceAll("public/", "https://publish.obsidian.md/public/");
+				//cssText = cssText.replaceAll("lib/", "https://publish.obsidian.md/lib/")
 				
 				this.appStyles += cssText;
 			}
