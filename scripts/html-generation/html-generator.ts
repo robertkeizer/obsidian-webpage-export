@@ -247,7 +247,7 @@ export class HTMLGenerator
 		let leftContent = docEl.createElement("div");
 		let leftSidebarScroll = docEl.createElement("div");
 		let documentContainer = docEl.createElement("div");
-		let rightSidebar = docEl.createElement("div");
+		//let rightSidebar = docEl.createElement("div");
 		let rightContent = docEl.createElement("div");
 		let rightSidebarScroll = docEl.createElement("div");
 
@@ -256,10 +256,10 @@ export class HTMLGenerator
 		leftContent.setAttribute("class", "sidebar-content");
 		leftSidebarScroll.setAttribute("class", "sidebar-scroll-area");
 		documentContainer.setAttribute("class", "document-container");
-		rightContent.setAttribute("class", "sidebar-content");
-		rightSidebar.setAttribute("class", "sidebar-right");
-    rightSidebar.setAttribute("display", "none");
-		rightSidebarScroll.setAttribute("class", "sidebar-scroll-area");
+		//rightContent.setAttribute("class", "sidebar-content");
+		//rightSidebar.setAttribute("class", "sidebar-right");
+    //rightSidebar.setAttribute("display", "none");
+		//rightSidebarScroll.setAttribute("class", "sidebar-scroll-area");
 
 		leftSidebar.classList.add("sidebar");
 		leftSidebar.appendChild(leftContent);
@@ -267,13 +267,13 @@ export class HTMLGenerator
 
 		documentContainer.appendChild(middleContent);
 
-		rightSidebar.classList.add("sidebar");
-		rightSidebar.appendChild(rightContent);
+		//rightSidebar.classList.add("sidebar");
+		//rightSidebar.appendChild(rightContent);
 		// rightContent.appendChild(rightSidebarScroll);
 
 		pageContainer.appendChild(leftSidebar);
 		pageContainer.appendChild(documentContainer);
-		pageContainer.appendChild(rightSidebar);
+		//pageContainer.appendChild(rightSidebar);
 
 
 		return {container: pageContainer, left: leftContent, leftScroll: leftSidebarScroll, right: rightContent, rightScroll: rightSidebarScroll, center: documentContainer};

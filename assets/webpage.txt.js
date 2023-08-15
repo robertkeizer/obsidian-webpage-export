@@ -341,80 +341,8 @@ var slideToggleAll = (targets, duration = 500) => {
 
 async function loadDocument(url, pushHistory = true, scrollTo = true)
 {
-	//console.log("Loading document: " + url);
-	
-	// change the active file
-	setActiveDocument(url, scrollTo, pushHistory);
-
-	let response;
-
-	// if(typeof embeddedDocuments == 'undefined')
-	// {
-	try
-	{
-		response = await fetch(url);
-	}
-	catch (error)
-	{
-		//console.log("Cannot use fetch API (likely due to CORS), just loading the page normally.");
 		window.location.assign(url);
 		return;
-	}
-	// }
-	// else
-	// {
-	// 	response = new Response(embeddedDocuments[url], {status: 200, statusText: "OK"});
-	// }
-
-	let doc = document.implementation.createHTMLDocument();
-
-	if (response.ok)
-	{
-		let html = (await response.text()).replaceAll("<!DOCTYPE html>", "").replaceAll("<html>", "").replaceAll("</html>", "");
-		doc.documentElement.innerHTML = html;
-
-		// copy document content and outline tree
-		document.querySelector(".document-container").innerHTML = doc.querySelector(".document-container").innerHTML;
-		document.querySelector(".outline-tree").innerHTML = doc.querySelector(".outline-tree").innerHTML;
-	
-		// if the url has a heading, scroll to it
-		let splitURL = url.split("#");
-		let pathnameTarget = splitURL[0] ?? url;
-		let headingTarget = splitURL.length > 1 ? splitURL[1] : null;
-		if (headingTarget) document.getElementById(headingTarget).scrollIntoView();
-
-		// Change the root path to match the match from the new page
-		setupRootPath(doc);
-
-		// initialize events on the new page
-		initializePage(document.querySelector(".document-container"));
-		initializePage(document.querySelector(".outline-tree"));
-
-		document.title = doc.title;
-	}
-	else
-	{
-		// if the page is not able to load instead add a header saying the page doesn't exist
-		document.querySelector(".markdown-preview-view").innerHTML = 
-		`
-		<div>
-			<center style='position: relative; transform: translateY(20vh); width: 100%; text-align: center;'>
-				<h1 style>Page Not Found</h1>
-			</center>
-		</div>
-		`;
-
-		document.querySelector(".outline-tree").innerHTML = "";
-
-		//console.log("Page not found: " + getAbsoluteRootPath() + url);
-		let newRootPath = getURLRootPath(getAbsoluteRootPath() + url);
-		rootPath = newRootPath;
-		document.querySelector("base").href = newRootPath;
-
-		document.title = "Page Not Found";
-	}
-
-	return doc;
 }
 
 function setActiveDocument(url, scrollTo = true, pushHistory = true)
@@ -868,6 +796,12 @@ function setupResize(setupOnNode)
 }
 
 function sidebarClickHandler(event, btnEl, side, sidebarWidth) {
+  console.log( "Got click for sidebar click handler.." );
+  console.log( event );
+  console.log( btnEl );
+  console.log( side );
+  console.log( sidebarWidth );
+
 	const sides = "leftright";
 	const opposite = sides.replace(side, "");
 	event.preventDefault();
