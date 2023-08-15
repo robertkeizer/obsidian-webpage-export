@@ -7,6 +7,5 @@
 	"author": "Nathan George",
 	"authorUrl": "https://github.com/KosmosisDire/obsidian-webpage-export",
 	"isDesktopOnly": true,
-	"fundingUrl": "https://www.buymeacoffee.com/nathangeorge",
-	"updateNote": "- PLEASE COMPLETELY UNINSTALL AND REINSTALL THE PLUGIN FOR THIS UPDATE!!!\n  See github for the reason behind this.\n- Fixes exporting images after obsidian update\n- Finally added vault file tree / explorer!! Yay!\n- Added support for transclusions\n- Polished page styles and mobile scaling\n- Page layout options\n- Tons of bug fixes and QOL improvements"
+  "js": "main.js"
 }

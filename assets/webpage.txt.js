@@ -1,6 +1,3 @@
-
-//#region Helpers
-
 function getAbsoluteRootPath()
 {
 	if (typeof rootPath == 'undefined') setupRootPath(document);
@@ -128,7 +125,7 @@ function setHeaderOpen(headerDiv, open, openParents = true)
 {
 	if(headerDiv.tagName != "DIV" || !getHeaderEl(headerDiv))
 	{
-		console.error("setHeaderOpen() must be called with a header div");
+		//console.error("setHeaderOpen() must be called with a header div");
 		return;
 	}
 
@@ -344,7 +341,7 @@ var slideToggleAll = (targets, duration = 500) => {
 
 async function loadDocument(url, pushHistory = true, scrollTo = true)
 {
-	console.log("Loading document: " + url);
+	//console.log("Loading document: " + url);
 	
 	// change the active file
 	setActiveDocument(url, scrollTo, pushHistory);
@@ -359,7 +356,7 @@ async function loadDocument(url, pushHistory = true, scrollTo = true)
 	}
 	catch (error)
 	{
-		console.log("Cannot use fetch API (likely due to CORS), just loading the page normally.");
+		//console.log("Cannot use fetch API (likely due to CORS), just loading the page normally.");
 		window.location.assign(url);
 		return;
 	}
@@ -409,7 +406,7 @@ async function loadDocument(url, pushHistory = true, scrollTo = true)
 
 		document.querySelector(".outline-tree").innerHTML = "";
 
-		console.log("Page not found: " + getAbsoluteRootPath() + url);
+		//console.log("Page not found: " + getAbsoluteRootPath() + url);
 		let newRootPath = getURLRootPath(getAbsoluteRootPath() + url);
 		rootPath = newRootPath;
 		document.querySelector("base").href = newRootPath;
@@ -553,7 +550,7 @@ function setupThemeToggle(setupOnNode)
 
     setupOnNode.querySelector(".theme-toggle-input")?.addEventListener("change", event =>
 	{
-		console.log("Theme toggle changed to: " + !(localStorage.getItem("theme_toggle") == "true"));
+		//console.log("Theme toggle changed to: " + !(localStorage.getItem("theme_toggle") == "true"));
 		setThemeToggle(!(localStorage.getItem("theme_toggle") == "true"));
 	});
 
@@ -608,7 +605,7 @@ function setupHeaders(setupOnNode)
 			// if the target is a header uncollapse it
 			if (target.startsWith("#")) 
 			{
-				console.log("Uncollapsing header: " + target);
+				//console.log("Uncollapsing header: " + target);
 				let header = document.getElementById(target.substring(1));
 				setHeaderOpen(header.parentElement, true);
 			}
@@ -963,7 +960,7 @@ function initializeForFileProtocol()
 	let graphEl = document.querySelector(".graph-view-placeholder");
 	if(graphEl)
 	{
-		console.log("Running locally, skipping graph view initialization and hiding graph.");
+		//console.log("Running locally, skipping graph view initialization and hiding graph.");
 		graphEl.style.display = "none";
 		graphEl.previousElementSibling.style.display = "none"; // hide the graph's header
 	}

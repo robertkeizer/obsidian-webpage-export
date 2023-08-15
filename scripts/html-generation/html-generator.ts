@@ -141,10 +141,10 @@ export class HTMLGenerator
 			// continue if heading already has an arrow
 			if (element.querySelector(".heading-collapse-indicator") != null) return;
 
-			let el = file.document.createElement("div");
-			el.setAttribute("class", "heading-collapse-indicator collapse-indicator collapse-icon");
-			el.innerHTML = arrowHTML;
-			element.prepend(el);
+			//let el = file.document.createElement("div");
+			//el.setAttribute("class", "heading-collapse-indicator collapse-indicator collapse-icon");
+			//el.innerHTML = arrowHTML;
+			//element.prepend(el);
 		});
 		
 		// remove collapsible arrows from h1 and inline titles
@@ -258,6 +258,7 @@ export class HTMLGenerator
 		documentContainer.setAttribute("class", "document-container");
 		rightContent.setAttribute("class", "sidebar-content");
 		rightSidebar.setAttribute("class", "sidebar-right");
+    rightSidebar.setAttribute("display", "none");
 		rightSidebarScroll.setAttribute("class", "sidebar-scroll-area");
 
 		leftSidebar.classList.add("sidebar");
@@ -333,14 +334,13 @@ export class HTMLGenerator
 		<base href="${relativePaths.rootPath}/">
 		<meta id="root-path" root-path="${relativePaths.rootPath}/">
 
-		<link rel="icon" sizes="96x96" href="https://publish-01.obsidian.md/access/f786db9fac45774fa4f0d8112e232d67/favicon-96x96.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
 		<meta charset="UTF-8">
 		`;
 
 		if (ExportSettings.settings.includeOutline)
 		{
-			meta += `<script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>`;
+		//	meta += `<script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>`;
 		}
 
 		// --- JS ---
@@ -365,7 +365,7 @@ export class HTMLGenerator
 			scripts += `\n<script type='module' src='${relativePaths.jsPath}/graph_view.js'></script>\n`;
 			scripts += `\n<script src='${relativePaths.jsPath}/graph_wasm.js'></script>\n`;
 			scripts += `\n<script src="${relativePaths.jsPath}/tinycolor.js"></script>\n`;
-			scripts += `\n<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js" integrity="sha512-Ch/O6kL8BqUwAfCF7Ie5SX1Hin+BJgYH4pNjRqXdTEqMsis1TUYg+j6nnI9uduPjGaj7DN4UKCZgpvoExt6dkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>\n`;
+			//scripts += `\n<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js" integrity="sha512-Ch/O6kL8BqUwAfCF7Ie5SX1Hin+BJgYH4pNjRqXdTEqMsis1TUYg+j6nnI9uduPjGaj7DN4UKCZgpvoExt6dkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>\n`;
 		}
 
 		if (ExportSettings.settings.inlineJS)
@@ -667,7 +667,7 @@ export class HTMLGenerator
 		let treeContainerEl = usingDocument.createElement('div');
 		let treeHeaderEl = usingDocument.createElement('div');
 		let sectionHeaderEl = usingDocument.createElement('span');
-		let collapseAllEl = usingDocument.createElement('button');
+		//let collapseAllEl = usingDocument.createElement('button');
 		let collapseAllIconEl = usingDocument.createElement('iconify-icon');
 		let treeScrollAreaEl = usingDocument.createElement('div');
 
@@ -675,8 +675,10 @@ export class HTMLGenerator
 		if (showNestingIndicator) treeContainerEl.classList.add("mod-nav-indicator");
 		treeHeaderEl.classList.add("tree-header");
 		sectionHeaderEl.classList.add("sidebar-section-header");
-		collapseAllEl.classList.add("clickable-icon", "collapse-tree-button");
-		if (closeAllItems) collapseAllEl.classList.add("is-collapsed");
+
+		//collapseAllEl.classList.add("clickable-icon", "collapse-tree-button");
+		//if (closeAllItems) collapseAllEl.classList.add("is-collapsed");
+    
 		treeScrollAreaEl.classList.add("tree-scroll-area");
 
 		treeContainerEl.setAttribute("data-depth", "0");
@@ -690,8 +692,8 @@ export class HTMLGenerator
 		treeContainerEl.appendChild(treeHeaderEl);
 		treeContainerEl.appendChild(treeScrollAreaEl);
 		treeHeaderEl.appendChild(sectionHeaderEl);
-		treeHeaderEl.appendChild(collapseAllEl);
-		collapseAllEl.appendChild(collapseAllIconEl);
+		//treeHeaderEl.appendChild(collapseAllEl);
+		//collapseAllEl.appendChild(collapseAllIconEl);
 
 		let treeItems = this.buildTreeRecursive(tree, usingDocument, minDepth, minCollapsableDepth, closeAllItems);
 

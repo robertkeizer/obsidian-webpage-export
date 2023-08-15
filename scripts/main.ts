@@ -100,7 +100,7 @@ export default class HTMLExportPlugin extends Plugin
 		ExportSettings.loadSettings();
 
 		// init last exported data
-		this.lastExported = this.app.loadLocalStorage(LOCALSTORAGE_KEY) ?? {};
+		//this.lastExported = this.app.loadLocalStorage(LOCALSTORAGE_KEY) ?? {};
 
 		// add export vault icon to ribbon
 		this.addRibbonIcon("folder-up", "Export Vault to HTML", async () =>
@@ -183,24 +183,6 @@ export default class HTMLExportPlugin extends Plugin
 			exportToPath = saveDialogPath;
 		}
 
-		if (
-			ExportSettings.settings.incrementalExport &&
-			this.lastExported &&
-			file.stat.mtime <= this.lastExported[file.path]
-		) {
-			new Notice(
-				`Skipping ${file.path}. File unchanged since last export.`,
-				5000
-			);
-			RenderLog.progress(
-				1,
-				2,
-				'File unchanged',
-				`Skipping: ${file.path}`
-			);
-			return;
-		}
-
 		if (!partOfBatch)
 		{
 			// if we are starting a new export then begin a new batch
@@ -234,7 +216,7 @@ export default class HTMLExportPlugin extends Plugin
 			HTMLGenerator.endBatch();
 		}
 
-		this.lastExported[file.path] = new Date().getTime();
+		//this.lastExported[file.path] = new Date().getTime();
 
 		return exportedFile;
 	}
@@ -341,7 +323,7 @@ export default class HTMLExportPlugin extends Plugin
 
 	onunload()
 	{
-		this.app.saveLocalStorage(LOCALSTORAGE_KEY, this.lastExported);
-		console.log('unloading webpage-html-export plugin');
+		//this.app.saveLocalStorage(LOCALSTORAGE_KEY, this.lastExported);
+		//console.log('unloading webpage-html-export plugin');
 	}
 }

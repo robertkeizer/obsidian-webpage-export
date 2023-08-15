@@ -3,6 +3,21 @@
 	mix-blend-mode: normal !important;
 }
 
+.tree-item-contents
+{
+  cursor: pointer !important;
+}
+
+.theme-toggle-container
+{
+  display: none !important;
+}
+
+.markdown-preview-view
+{
+  font-size: 16px !important;
+}
+
 @media print 
 {
     
@@ -27,6 +42,7 @@
     display: none !important;
 }
 
+/*
 @font-face
 {
     font-family: MJXZERO;
@@ -259,7 +275,7 @@
     font-family: 'Flow Circular';
     font-display: swap;
     src: url('https://publish.obsidian.md/public/fonts/853ff76f08786ae44ca0.woff');
-}
+}*/
 
 .collapse-icon::before 
 { 
