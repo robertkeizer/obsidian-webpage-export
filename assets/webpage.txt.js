@@ -807,6 +807,12 @@ function sidebarClickHandler(event, btnEl, side, sidebarWidth) {
 	event.preventDefault();
 	event.stopImmediatePropagation();
 
+  if( window._debounced ){ return; }
+  window._debounced = true;
+  setTimeout( function( ){
+    window._debounced = false;
+  }, 200 );
+
 	let containerEl = document.querySelector(".webpage-container");
 
 	const width = sidebarWidth;

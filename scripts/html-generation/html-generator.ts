@@ -96,7 +96,7 @@ export class HTMLGenerator
 
 		let lineWidth = ExportSettings.settings.customLineWidth || "50em";
 		let contentWidth = ExportSettings.settings.contentWidth || "500em";
-		let sidebarWidth = ExportSettings.settings.sidebarWidth || "25em";
+		let sidebarWidth = ExportSettings.settings.sidebarWidth || "24em";
 		if (!isNaN(Number(lineWidth))) lineWidth += "px";
 		if (!isNaN(Number(contentWidth))) contentWidth += "px";
 		if (!isNaN(Number(sidebarWidth))) sidebarWidth += "px";
