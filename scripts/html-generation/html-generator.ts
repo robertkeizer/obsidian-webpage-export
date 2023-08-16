@@ -129,7 +129,7 @@ export class HTMLGenerator
 			this.addTitle(file);
 
 		// add heading fold arrows
-		let arrowHTML = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='svg-icon right-triangle'><path d='M3 8L12 17L21 8'></path></svg>";
+		/*let arrowHTML = "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='svg-icon right-triangle'><path d='M3 8L12 17L21 8'></path></svg>";
 		let headings = file.document.querySelectorAll("div h2, div h3, div h4, div h5, div h6");
 		headings.forEach((element) =>
 		{
@@ -145,7 +145,7 @@ export class HTMLGenerator
 			//el.setAttribute("class", "heading-collapse-indicator collapse-indicator collapse-icon");
 			//el.innerHTML = arrowHTML;
 			//element.prepend(el);
-		});
+		});*/
 		
 		// remove collapsible arrows from h1 and inline titles
 		file.document.querySelectorAll("div h1, div .inline-title").forEach((element) =>

@@ -79,6 +79,13 @@ async function setTreeCollapsedAll(elements, collapsed, animate = true)
 function toggleTreeCollapsed(element)
 {
 	if (!element) return;
+
+  if(window._toggleTreeDebounce){ return; }
+  window._toggleTreeDebounce = true;
+  setTimeout( function( ){
+    window._toggleTreeDebounce = false;
+  }, 200);
+
 	setTreeCollapsed(element, !element.classList.contains("is-collapsed"));
 }
 
@@ -549,7 +556,9 @@ function setupTrees(setupOnNode)
 	{
 		item.addEventListener("click", function()
 		{
-			toggleTreeCollapsed(item.parentElement.parentElement);
+      setTimeout( function( ){
+			  toggleTreeCollapsed(item.parentElement.parentElement);
+      }, Math.round(Math.random()*100) );
 		});
 	});
 
@@ -796,12 +805,6 @@ function setupResize(setupOnNode)
 }
 
 function sidebarClickHandler(event, btnEl, side, sidebarWidth) {
-  console.log( "Got click for sidebar click handler.." );
-  console.log( event );
-  console.log( btnEl );
-  console.log( side );
-  console.log( sidebarWidth );
-
 	const sides = "leftright";
 	const opposite = sides.replace(side, "");
 	event.preventDefault();
